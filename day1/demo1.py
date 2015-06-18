@@ -14,8 +14,8 @@ print( 1+ 8);print( 3* 6)
  
  
 # 定义整型变量
-x=y=z=10
-print(x*y*z)
+x=y=z=10;
+print(x*y*z);
  
 # ** 幂运算
 print( 3** 3) #3**3: 3的3次方
