@@ -25,6 +25,12 @@ print( 3** 3) #3**3: 3的3次方
 # Python中整除运算最终值取的是中间值的floor值
 print( 7/- 3) #输出: -3
 print( 7%- 3) #输出: -2
+
+print('中文')
+print('hello, %s') % 'world'
+print('Hi, %s, you have $%d.') %('wujunwei', 10000)
+print('%2d-%02d') %(3,1)
+print('%.2f') % 3.1415926
  
  
 # python函数,分支结构初探
