@@ -16,15 +16,15 @@ classmates = ['michael', 'bob', 'tracy']
 # print(len(classmates))
 # print(classmates[0])
 # print(classmates[6])  #error 没有对应的数组元素
-print( classmates[-1] ) # 倒数第一个元素
-classmates.append('Adam')	# 往list中追加元素到末尾
-print(classmates)
-classmates.insert(1, 'Jack')	# 把元素插入到指定的位置，比如索引号为1的位置
-print(classmates)
-classmates.pop()	# 删除list末尾的元素
-print(classmates)
-classmates.pop(1)	# 删除指定位置的元素
-print(classmates)
+# print( classmates[-1] ) # 倒数第一个元素
+# classmates.append('Adam')	# 往list中追加元素到末尾
+# print(classmates)
+# classmates.insert(1, 'Jack')	# 把元素插入到指定的位置，比如索引号为1的位置
+# print(classmates)
+# classmates.pop()	# 删除list末尾的元素
+# print(classmates)
+# classmates.pop(1)	# 删除指定位置的元素
+# print(classmates)
 
 
 ######  tuple元组学习   todo
@@ -85,4 +85,11 @@ def getAbsolute(a):
 # print( len( '中文'.encode('utf-8') ) )	# 输出: 6
 # print( len( '中文'.encode('gbk') ) )		# 输出: 4
 
-
+def getScoreDesc(score):
+	if score < 60:
+		print('不及格')
+	elif score >=60 and score <80:
+		print('及格')
+	elif score > 80:
+		print('优秀')
+getScoreDesc(90)
