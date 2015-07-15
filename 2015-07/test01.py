@@ -25,10 +25,17 @@ classmates = ['michael', 'bob', 'tracy']
 # print(classmates)
 # classmates.pop(1)	# 删除指定位置的元素
 # print(classmates)
+L = [1]		# 空的list
+print( len(L) )
 
 
 ######  tuple元组学习   todo
 # tuple和list非常类似，但是tuple一旦初始化就不能修改
+t1 = (1, 2)  # 定义元组
+t2 = () 	 # 空元组
+t3 = (1)	 # 数字1 因为()既能表示tuple, 又能表示数学公式中的小括号, 这种算用小括号进行计算
+t4 = (1,)    # 正确的定义一个元素tuple的方法
+print( t1, t2, t3, t4 )
 
 
 # 在Ubuntu上用 python test01.py运行得时候报错, 
