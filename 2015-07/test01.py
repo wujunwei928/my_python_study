@@ -35,7 +35,14 @@ t1 = (1, 2)  # 定义元组
 t2 = () 	 # 空元组
 t3 = (1)	 # 数字1 因为()既能表示tuple, 又能表示数学公式中的小括号, 这种算用小括号进行计算
 t4 = (1,)    # 正确的定义一个元素tuple的方法
-print( t1, t2, t3, t4 )
+# print( t1, t2, t3, t4 )
+# 注意: tuple所谓的“不变”是说，tuple的每个元素，指向永远不变。
+# 即指向'a'，就不能改成指向'b'，指向一个list，就不能改成指向其他对象，但指向的这个list本身是可变的！ 例如:
+t5 = ('a', 'b', ['A', 'B'])
+# print(t5)	# ('a', 'b', ['A', 'B'])
+t5[2][0]='X'
+t5[2][1]='Y'
+# print(t5)   # ('a', 'b', ['X', 'Y'])
 
 
 # 在Ubuntu上用 python test01.py运行得时候报错, 
@@ -92,6 +99,8 @@ def getAbsolute(a):
 # print( len( '中文'.encode('utf-8') ) )	# 输出: 6
 # print( len( '中文'.encode('gbk') ) )		# 输出: 4
 
+
+###### 条件判断
 def getScoreDesc(score):
 	if score < 60:
 		print('不及格')
@@ -99,4 +108,42 @@ def getScoreDesc(score):
 		print('及格')
 	elif score > 80:
 		print('优秀')
-getScoreDesc(90)
+# getScoreDesc(90)
+
+
+###### 变量类型转换
+''' #input()函数获取得数据类型是字符串,
+ 不能直接和整数比较, 先转型,python这点比php严格 
+ '''
+def myInput():
+	s=input('birth: ')  
+	birth=int(s)  #将变量转成整形, 输入123可以转型, 但是abc报错, 需要用到python得异常处理, 这点看python验证比较严格
+	if birth<2000:
+		print('00前')
+	else:
+		print('00后')
+# myInput()
+
+
+###### 循环
+#求从1加到n的和  for循环
+def getSum(n):
+	sum=0
+	for x in range(n+1):
+		sum+=x
+	print(sum)
+# getSum(100)
+
+#九九乘法表 while循环
+def jiujiu(n):
+	i=1
+	while i<=n:
+		j=1
+		while j<=i:
+			if j != i:
+				print('%d*%d=%d '  % (j, i, j*i), end="")  #不换行打印
+			else:
+				print('%d*%d=%d '  % (j, i, j*i)) #换行打印
+			j+=1
+		i+=1
+jiujiu(3)
