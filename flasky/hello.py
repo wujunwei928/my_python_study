@@ -11,7 +11,7 @@ def index():
     # return '<h1>Hello World!</h1>'
     return render_template('index.html')
 
-user register
+# user register
 @app.route('/user/register')
 def user_register():
     # return '<h1>user register!</h1>'
@@ -31,9 +31,9 @@ def crontab_add():
 
 # add crontab
 @app.route('/crontab/add')
-def crontab_add():
-    # return '<h1>crontab add!</h1>'
-    return render_template('crontab_add.html')
+# def crontab_add():
+#     # return '<h1>crontab add!</h1>'
+#     return render_template('crontab_add.html')
 
 # update crontab
 @app.route('/crontab/update/<crontab_id>')
