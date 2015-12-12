@@ -118,3 +118,14 @@ for ciyu in seg_list:
 	if zhiliang.has_key(ciyu):
 		gailv_2 *= float(zhiliang[ciyu])
 print gailv_2
+
+# ③: 读取多条评论获取分词
+pinglun_fp = open('pinglun.txt', 'r')
+for line in pinglun_fp:
+	pinglun = line.strip()
+	gailv_3 = 1
+	seg_list = jieba.cut(pinglun)
+	for ciyu in seg_list:
+		if zhiliang.has_key(ciyu):
+			gailv_3 *= float(zhiliang[ciyu])
+	print gailv_3
