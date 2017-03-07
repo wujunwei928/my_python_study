@@ -37,6 +37,7 @@ if __name__=="__main__":
             v2['rank'] = int(v2['rank'])
             if (v2['part'] != v1['part']) and (v2['topic_id'] == v1['topic_id']) and (v2['rank'] >= v1['rank']):
                 v2['rank'] += 1
+            d3[k2] = v2
 
     # python sorted 多个字段排序
     sorted_d3 = sorted(d3, key=lambda x:(x['topic_id'], x['rank']))
