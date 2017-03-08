@@ -6,9 +6,23 @@
 cat sku.txt | python hive_transform.py
 
 2: hive中使用python脚本做Map-Reduce
-hql 语句中 使用python脚本 作为输出用来创建新表
-> add file hive_transform.py
-> create table new_table as select transform (topic_id, sku_id, rank, part) using 'python hive_transform.py' as (topic_id, sku_id, final_rank) from sku_table_3
+
+    2.1: hql 语句中 使用python脚本 作为输出用来创建新表
+    hive> add file hive_transform.py
+
+    2.2: 
+    # 下面这种情况, 会有多个reducer执行, 脚本会被多次执行, 每个reducer处理一部分数据, 然后再统一输出, 与你预期的结果不一致
+    hive> create table new_table as select transform (topic_id, sku_id, rank, part) using 'python hive_transform.py' as (topic_id, sku_id, final_rank) from sku_table_3
+
+    2.3:
+    # 要想python脚本一次获得所有输出, 要使用 order by, 确保数据在同一个reducer 上 执行
+    hive> create table wcx_2 as select transform (topic_id, sku_id, rank, part) using 'python hive_transform.py' as (topic_id, sku_id, final_rank) from (select * from wcx_1 order by topic_id) tmp
+
+3: 参考资料
+Hive + Python 数据分析入门: http://leanote.com/blog/view/539276d41a91080a06000002/
+Hive使用TRANSFORM运行Python脚本总结: http://www.th7.cn/Program/Python/201405/197929.shtml
+hive优化之------控制hive任务中的map数和reduce数: http://www.dataguru.cn/article-3269-1.html
+
 """
 
 import sys
