@@ -75,10 +75,11 @@ if __name__=="__main__":
         # 同时将4补充到rank关系列表中, 变为[1, 2, 3, 4]
         # 接下来比较2, 2在[1, 2, 3, 4]中, 自增为3, 3在[1, 2, 3, 4]中, 自增为4, 4在[1, 2, 3, 4]中, 自增为5
         # 这里可以看到, 如果不将表2中对应变化的rank值补充到rank关系列表中, 后面判断可能会导致同一个topic_id下会出现相同的rank值
-        while tmp_rank in tmp_rank_list:
-            tmp_rank += 1
-        rank_relationship[v2['topic_id']].append(tmp_rank)    # 将变化的rank值保存起来, 便于后续rank值变化比较
-        d2[k2]['rank'] = tmp_rank
+        if tmp_rank in tmp_rank_list:
+            while tmp_rank in tmp_rank_list:
+                tmp_rank += 1
+            rank_relationship[v2['topic_id']].append(tmp_rank)    # 将变化的rank值保存起来, 便于后续rank值变化比较
+            d2[k2]['rank'] = tmp_rank
     
 
     # 对调整rank值之后, 两个表的数据再组合起来, 进行排序
