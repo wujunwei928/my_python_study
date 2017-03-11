@@ -89,7 +89,10 @@ if __name__ == "__main__":
         # 对调整rank值之后, 两个表的数据再组合起来, 进行排序
         d1.extend(d2)
         del(d2)
+        # sorted 针对多个字段排序, 默认是升序, 如果想哪个字段降序, 前面加-
         sorted_record_list = sorted(d1, key=lambda x: (x['topic_id'], x['rank']))
+        # 像上面:先针对topic_id升序, 再针对rank升序;  如下面: 先针对topic_id降序, 再针对rank升序
+        # sorted_record_list = sorted(d1, key=lambda x: (-x['topic_id'], x['rank']))
 
         # 打印输出
         for k, v in enumerate(sorted_record_list):
