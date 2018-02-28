@@ -23,4 +23,4 @@ psutil pexpect fabric ansible
 diango flask
 
 ### 安装特色包
-httpie thefuck sh
+httpie thefuck sh you-get
