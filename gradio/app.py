@@ -1,63 +1,57 @@
-import json
-
 import gradio as gr
 
-from utils.encrypt import md5_encode, sha1_encode, base64_encode, base64_decode
-
-def add(a, b):
-    return a + b
-
-def multiply(a, b):
-    return a * b
-
-
-def to_upper_case(text):
-    return text.upper()
+from gradio_demos import HelloWorld, HelloBlocks, SentenceBuilder
+from gradio_demos import DiffTexts, SepiaFilter, VideoIdentity
+from gradio_demos import IterativeOutput, GenerateTone, FilterRecords
+from gradio_demos import TransposeMatrix, TaxCalculator, Kinematics
+from gradio_demos import StockForecast, TabbedInterface, Chatbot
+from gradio_demos import StreamingChatbot, Layouts, Error, ChainedEvents
+from gradio_demos import ChangeListener, DevTools
 
 
-def to_lower_case(text):
-    return text.lower()
+demo_list = [
+    # text 文本
+    HelloWorld(),       # hello world demo
+    HelloBlocks(),      # blocks demo
+    SentenceBuilder(),  # 句子生成器
+    DiffTexts(),        # 文本比较
 
+    # media 多媒体
+    SepiaFilter(),      # 棕褐色滤镜
+    VideoIdentity(),    # 视频识别
+    IterativeOutput(),  # 迭代输出
+    GenerateTone(),     # 生成音调
 
-def format_json(input_text):
-    try:
-        parsed_json = json.loads(input_text)
-        formatted_json = json.dumps(parsed_json, indent=4, ensure_ascii=False)
-        return formatted_json
-    except json.JSONDecodeError:
-        return "Invalid JSON"
+    # tabular 表格
+    FilterRecords(),    # 过滤记录
+    TransposeMatrix(),  # 转置矩阵
+    TaxCalculator(),    # 税收计算器
+    Kinematics(),       # 运动学
+    StockForecast(),    # 股票预测
 
+    # other 其他
+    TabbedInterface(),  # 标签界面
+    Chatbot(),          # 聊天机器人
+    StreamingChatbot(), # 流式聊天机器人
+    Layouts(),          # 布局
+    Error(),            # 错误
+    ChainedEvents(),    # 链式事件
+    ChangeListener(),   # 更改监听器
 
+    # 自定义开发  研发工具集
+    DevTools(),
+]
 
-with gr.Blocks() as demo:
-    gr.Markdown("# 多页面示例")
-    with gr.Tabs():
-        with gr.TabItem("开发工具"):
-            gr.Markdown("## 开发工具")
-            input_text_val = gr.TextArea("", label="输入文本")
+tab_interface_list = []
+tab_name_list = []
+for demo in demo_list:
+    tab_interface_list.append(demo.render())
+    tab_name_list.append(demo.get_demo_name())
 
-            dev_button_list = [
-                [("MD5加密", md5_encode), ("SHA1加密", sha1_encode)],
-                [("base64加密", base64_encode), ("base64解密", base64_decode)],
-                [("大写", to_upper_case), ("小写", to_lower_case)],
-            ]
-            for btn_items in dev_button_list:
-                with gr.Row():
-                    for btn in btn_items:
-                        gr.Button(btn[0]).click(
-                            btn[1],
-                            inputs=[input_text_val],
-                            outputs=input_text_val,
-                        )
+tabbed_demo = gr.TabbedInterface(
+    interface_list=tab_interface_list,
+    tab_names=tab_name_list,
+    title="gradio playground 例子: https://www.gradio.app/playground")
 
-        with gr.TabItem("JSON格式化"):
-            gr.Markdown("## JSON格式化")
-            with gr.Row():
-                input_text = gr.Textbox(lines=10, label="输入 JSON")
-                output_text = gr.Textbox(lines=10, label="格式化 JSON")
-            format_button = gr.Button("格式化").click(
-                format_json, inputs=[input_text], outputs=output_text
-            )
-
-
-demo.launch()
+if __name__ == "__main__":
+    tabbed_demo.launch()
