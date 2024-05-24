@@ -6,7 +6,7 @@ from gradio_demos import IterativeOutput, GenerateTone, FilterRecords
 from gradio_demos import TransposeMatrix, TaxCalculator, Kinematics
 from gradio_demos import StockForecast, TabbedInterface, Chatbot
 from gradio_demos import StreamingChatbot, Layouts, Error, ChainedEvents
-from gradio_demos import ChangeListener, DevTools
+from gradio_demos import ChangeListener, DevTools, CrudDemo
 
 
 demo_list = [
@@ -40,6 +40,7 @@ demo_list = [
 
     # 自定义开发  研发工具集
     DevTools(),
+    CrudDemo(),
 ]
 
 tab_interface_list = []

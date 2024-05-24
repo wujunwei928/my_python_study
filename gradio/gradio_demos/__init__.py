@@ -19,3 +19,4 @@ from .error import Error
 from .chained_events import ChainedEvents
 from .change_listener import ChangeListener
 from .dev_tools import DevTools
+from .crud_demo import CrudDemo
